@@ -39,7 +39,7 @@ public class CreateTable {
                     + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "categoria varchar(50) UNIQUE);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_aluno ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -48,9 +48,9 @@ public class CreateTable {
                     + "telefone varchar(11) NOT NULL, "
                     + "curso varchar(255) NOT NULL, "
                     + "ano_ingresso int NOT NULL, "
-                    + "grr varchar(11) NOT NULL;");
+                    + "grr varchar(11) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_professor ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -58,9 +58,9 @@ public class CreateTable {
                     + "endereco varchar(255) NOT NULL, "
                     + "telefone varchar(11) NOT NULL, "
                     + "depto varchar(255) NOT NULL, "
-                    + "area_estudo varchar(255) NOT NULL;");
+                    + "area_estudo varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_servidor ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -68,59 +68,59 @@ public class CreateTable {
                     + "endereco varchar(255) NOT NULL, "
                     + "telefone varchar(11) NOT NULL, "
                     + "unidade varchar(255) NOT NULL, "
-                    + "data_ingresso date NOT NULL;");
+                    + "data_ingresso date NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_externo ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
                     + "endereco varchar(255)NOT NULL, "
                     + "telefone varchar(11)NOT NULL, "
-                    + "observacao varchar(255);");
+                    + "observacao varchar(255));");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_atendente ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY,"
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
                     + "endereco varchar(255) NOT NULL, "
-                    + "senha varchar(255) NOT NULL;");
+                    + "senha varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_nutri ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY,"
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "crn varchar(255) NOT NULL, "
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
                     + "endereco varchar(255) NOT NULL, "
-                    + "senha varchar(255) NOT NULL;");
+                    + "senha varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_gerente ("
-                    + "id SERIAL UNIQUE PRIMARY KEY,, "
+                    + "id SERIAL UNIQUE PRIMARY KEY,"
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "crn varchar(255) NOT NULL, "
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
                     + "endereco varchar(255) NOT NULL, "
-                    + "senha varchar(255) NOT NULL;");
+                    + "senha varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS registrar_cliente ("
                     + "id SERIAL UNIQUE PRIMARY KEY,  "
                     + "data_hora timestamp,  "
                     + "cpf varchar(11),  "
-                    + "valor double, "
+                    + "valor double precision, "
                     + "categoria int, "
-                    + "foreign key (categoria) references categoria(id);");
-            query.executeUpdate("CREATE TABLE IF NOT EXISTS ingrediente("
-                    + "id SERIAL UNIQUE PRIMARY KEY, "
-                    + "nome varchar(50) UNIQUE NOT NULL,"
-                    + "tipo int NOT NULL), "
-                    + "descricao varchar(255) NOT NULL), "
-                    + "foreign key (tipo) references tipo_ingrediente(id);");
+                    + "foreign key (categoria) references categoria(id));");
+           
             query.executeUpdate("CREATE TABLE IF NOT EXISTS tipo_ingrediente ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "nome varchar(50) UNIQUE);");
-            
+            query.executeUpdate("CREATE TABLE IF NOT EXISTS ingrediente("
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "nome varchar(50) UNIQUE NOT NULL,"
+                    + "tipo int NOT NULL, "
+                    + "descricao varchar(255) NOT NULL, "
+                    + "foreign key (tipo) references tipo_ingrediente(id));");
             System.out.println("Tabelas criadas com sucesso.");
         } catch (Exception e) {
             System.out.println("Erro ao criar ao criar tabelas.");

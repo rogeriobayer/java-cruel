@@ -19,6 +19,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author anado
  */
 public class LoginDAO {
+
     private static final String QUERY_BUSCAR = "SELECT id FROM login WHERE login=? AND senha=?;";
     private static final String QUERY_BUSCAR_LOGIN = "SELECT id FROM login WHERE login=?;";
     private static final String QUERY_BUSCAR_TODOS = "SELECT id, login FROM login;";
@@ -130,7 +131,7 @@ public class LoginDAO {
     public void editarSenha(LoginBean login) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_EDITAR_SENHA)) {
             String sha256hex = DigestUtils.sha256Hex(login.getSenha());
-            
+
             st.setString(1, sha256hex);
             st.setInt(2, login.getId());
 

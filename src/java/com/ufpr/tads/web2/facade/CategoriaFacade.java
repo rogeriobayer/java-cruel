@@ -14,7 +14,7 @@ public class CategoriaFacade {
     public CategoriaFacade() {
     }
 
-    public static CategoriaBean buscarLogin(CategoriaBean categoria) throws ClassNotFoundException, Exception {
+    public static CategoriaBean categoriaPorNome(CategoriaBean categoria) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         CategoriaDAO categoriadao = new CategoriaDAO(conn.getConnection());
         return categoriadao.categoriaPorNome(categoria);

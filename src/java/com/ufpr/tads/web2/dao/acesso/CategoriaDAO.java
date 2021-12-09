@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ufpr.tads.web2.dao.acesso;
 
 import com.ufpr.tads.web2.beans.CategoriaBean;
@@ -18,6 +13,7 @@ import java.util.List;
  * @author anado
  */
 public class CategoriaDAO {
+
     private static final String QUERY_BUSCAR = "SELECT categoria FROM categoria WHERE id = ?;";
     private static final String QUERY_BUSCAR_POR_NOME = "SELECT id FROM categoria WHERE categoria = ?;";
     private static final String QUERY_BUSCAR_TODOS = "SELECT id, categoria FROM categoria;";

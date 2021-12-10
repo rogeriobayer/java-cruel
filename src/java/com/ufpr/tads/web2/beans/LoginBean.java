@@ -16,6 +16,7 @@ public class LoginBean implements Serializable {
     private int id;
     private String login;
     private String senha;
+    private String cargo;
 
     public LoginBean() {
     }
@@ -53,6 +54,14 @@ public class LoginBean implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
 }

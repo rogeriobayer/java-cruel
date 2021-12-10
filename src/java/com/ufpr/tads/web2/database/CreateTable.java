@@ -34,12 +34,15 @@ public class CreateTable {
             query.executeUpdate("CREATE TABLE IF NOT EXISTS login("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "login varchar(50) UNIQUE NOT NULL,"
-                    + "senha varchar(255) NOT NULL);");
+                    + "senha varchar(255) NOT NULL), "
+                    + "cargo varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS categoria ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "categoria varchar(50) UNIQUE);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_aluno ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -51,6 +54,8 @@ public class CreateTable {
                     + "grr varchar(11) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_professor ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -61,6 +66,8 @@ public class CreateTable {
                     + "area_estudo varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_servidor ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -71,6 +78,8 @@ public class CreateTable {
                     + "data_ingresso date NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_externo ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
@@ -80,38 +89,39 @@ public class CreateTable {
                     + "observacao varchar(255));");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_atendente ("
                     + "id SERIAL UNIQUE PRIMARY KEY,"
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
-                    + "endereco varchar(255) NOT NULL, "
-                    + "senha varchar(255) NOT NULL);");
+                    + "endereco varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_nutri ("
                     + "id SERIAL UNIQUE PRIMARY KEY,"
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
                     + "crn varchar(255) NOT NULL, "
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
-                    + "endereco varchar(255) NOT NULL, "
-                    + "senha varchar(255) NOT NULL);");
+                    + "endereco varchar(255) NOT NULL);");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS cadastro_gerente ("
                     + "id SERIAL UNIQUE PRIMARY KEY,"
+                    + "login varchar(50) UNIQUE NOT NULL,"
+                    + "senha varchar(255) NOT NULL), "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
-                    + "crn varchar(255) NOT NULL, "
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
-                    + "endereco varchar(255) NOT NULL, "
-                    + "senha varchar(255) NOT NULL);");
+                    + "endereco varchar(255) NOT NULL;");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS registrar_cliente ("
                     + "id SERIAL UNIQUE PRIMARY KEY,  "
                     + "data_hora timestamp,  "
-                    + "cpf varchar(11),  "
+                    + "CPF varchar(11),  "
                     + "valor double precision, "
                     + "categoria int, "
                     + "foreign key (categoria) references categoria(id));");
-           
             query.executeUpdate("CREATE TABLE IF NOT EXISTS tipo_ingrediente ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "nome varchar(50) UNIQUE);");

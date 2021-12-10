@@ -5,34 +5,32 @@
  */
 package com.ufpr.tads.web2.beans;
 
-import java.io.Serializable;
-
 /**
  *
  * @author anado
  */
-public class CategoriaBean implements Serializable {
-
+public class TipoIngredienteBean {
     private int id;
-    private String categoria;
-
-    public CategoriaBean() {
+    private String nome;
+    
+    public TipoIngredienteBean(){
     }
 
     public int getId() {
         return id;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
 }

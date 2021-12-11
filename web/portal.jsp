@@ -31,9 +31,13 @@
     </head>
    <body>
     <div id="portal" >
-        <h3 class="text-center text-white pt-5">CRUEL</h3>
+        <div class="justify-content-center align-items-center">
+            <h3 class="text-center text-white pt-5">CRUEL</h3>
+            <h3 class="text-center text-white">Bem vindo(a), ${login.getLogin()} </h3>
+            <button class="btn btn-primary align-self-center" onclick="location.href='LogoutServlet'" type="button">Sair </button>
+        </div>
         <div class="container">
-            <div id="portal-row" class="row justify-content-center align-items-center">
+            <div id="portal-row" class="row justify-content-center ">
                 <div id="portal-column" class="col-md-6">
                     <div id="portal-box" class="col-md-12">
                         <h3 class="text-center text-info">Cardapio do dia</h3>

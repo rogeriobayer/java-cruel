@@ -32,6 +32,13 @@
                                     ${erro} ${param.erro}
                                 </div>
                             </c:if>
+                                    
+                              <c:if test="${not empty info || not empty param.info}" >
+                                <div id="login-row" class="justify-content-center align-items-center">
+                                          <div class="alert alert-info" role="alert"> 
+                                    ${info} ${param.info}
+                                </div>
+                            </c:if>
                             
                             <div class="form-group">
                                 <label for="login" class="text-info">Login:</label><br>

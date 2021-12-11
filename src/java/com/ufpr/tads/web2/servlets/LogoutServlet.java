@@ -1,17 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.ufpr.tads.web2.servlets;
 
-import com.ufpr.tads.web2.beans.LoginBean;
-import com.ufpr.tads.web2.facade.LoginFacade;
-//import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-//import jakarta.servlet.ServletException;
-//import jakarta.servlet.annotation.WebServlet;
-//import jakarta.servlet.http.HttpServlet;
-//import jakarta.servlet.http.HttpServletRequest;
-//import jakarta.servlet.http.HttpServletResponse;
-//import jakarta.servlet.http.HttpSession;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +16,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author bayer
+ * @author tomat
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,21 +31,12 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
-        String email = request.getParameter("login");
-        String senha = request.getParameter("password");
-        LoginBean inputUser = new LoginBean(email, senha);
-        LoginBean user = LoginFacade.buscar(inputUser);
-        if (user != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("login", user);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/portal.jsp");
-            rd.forward(request, response);
-        } else {
-            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-            request.setAttribute("erro", "Usuário/Senha inválidos");
-            rd.forward(request, response);
-        }
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("login", null);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");
+        request.setAttribute("info", "Usuário desconectado com sucesso.");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,11 +51,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -84,11 +65,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

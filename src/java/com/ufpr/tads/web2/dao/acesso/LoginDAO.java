@@ -20,7 +20,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class LoginDAO {
 
-    private static final String QUERY_BUSCAR = "SELECT id FROM login WHERE login=? AND senha=?;";
+    private static final String QUERY_BUSCAR = "SELECT id, cargo FROM login WHERE login=? AND senha=?;";
     private static final String QUERY_BUSCAR_LOGIN = "SELECT id FROM login WHERE login=?;";
     private static final String QUERY_BUSCAR_TODOS = "SELECT id, login FROM login;";
     private static final String QUERY_INSERIR = "INSERT INTO login(login, senha) VALUES (?, ?);";
@@ -56,6 +56,7 @@ public class LoginDAO {
     public LoginBean buscar(LoginBean login) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR)) {
             String sha256hex = DigestUtils.sha256Hex(login.getSenha());
+            System.out.print(sha256hex);
 
             st.setString(1, login.getLogin());
             st.setString(2, sha256hex);
@@ -63,6 +64,7 @@ public class LoginDAO {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 login.setId(rs.getInt("id"));
+                login.setCargo(rs.getString("cargo"));
                 return login;
             } else {
                 return null;

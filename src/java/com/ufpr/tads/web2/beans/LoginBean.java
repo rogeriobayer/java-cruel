@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ufpr.tads.web2.beans;
 
 /**
@@ -25,6 +20,13 @@ public class LoginBean implements Serializable {
         this.id = id;
         this.login = login;
         this.senha = senha;
+    }
+
+    public LoginBean(int id, String login, String senha, String cargo) {
+        this.id = id;
+        this.login = login;
+        this.senha = senha;
+        this.cargo = cargo;
     }
 
     public LoginBean(String login, String senha) {
@@ -55,7 +57,7 @@ public class LoginBean implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     public String getCargo() {
         return cargo;
     }
@@ -65,4 +67,3 @@ public class LoginBean implements Serializable {
     }
 
 }
-

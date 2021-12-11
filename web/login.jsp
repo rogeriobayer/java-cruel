@@ -24,13 +24,12 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12 d-flex flex-column justify-content-center ">
                         
-                        <form id="login-form" class="form " action="LoginServlet" method="post">
-                            
+                        <form id="login-form" class="form " action="LoginServlet" method="post"> 
                             <h3 class="text-center text-info">Login</h3>
-                            <c:if test="${not empty erro}" >
+                            <c:if test="${not empty erro || not empty param.erro}" >
                                 <div id="login-row" class="justify-content-center align-items-center">
                                           <div class="alert alert-danger" role="alert"> 
-                                    ${erro}
+                                    ${erro} ${param.erro}
                                 </div>
                             </c:if>
                             

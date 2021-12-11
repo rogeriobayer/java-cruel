@@ -16,7 +16,7 @@ public class ClienteBean {
     private Timestamp data_hora;
     private String cpf;
     private double valor;
-    private int categoria;
+    private String categoria;
 
     public ClienteBean() {
     }
@@ -53,11 +53,11 @@ public class ClienteBean {
         this.valor = valor;
     }
 
-    public int getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
     

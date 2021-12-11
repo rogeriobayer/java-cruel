@@ -120,8 +120,8 @@ public class CreateTable {
                     + "data_hora timestamp,  "
                     + "CPF varchar(11),  "
                     + "valor double precision, "
-                    + "categoria int, "
-                    + "foreign key (categoria) references categoria(id));");
+                    + "categoria varchar(50), "
+                    + "foreign key (categoria) references categoria(categoria))");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS tipo_ingrediente ("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
                     + "nome varchar(50) UNIQUE);");

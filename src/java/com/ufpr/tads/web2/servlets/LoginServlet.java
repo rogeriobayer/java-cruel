@@ -48,8 +48,8 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/portal.jsp");
             rd.forward(request, response);
         } else {
-            RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
-            request.setAttribute("msg", "Usuário/Senha inválidos");
+            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+            request.setAttribute("erro", "Usuário/Senha inválidos");
             rd.forward(request, response);
         }
     }

@@ -4,7 +4,8 @@
     Author     : bayer
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="erro.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,9 +22,18 @@
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="LoginServlet" method="post">
+                    <div id="login-box" class="col-md-12 d-flex flex-column justify-content-center ">
+                        
+                        <form id="login-form" class="form " action="LoginServlet" method="post">
+                            
                             <h3 class="text-center text-info">Login</h3>
+                            <c:if test="${not empty erro}" >
+                                <div id="login-row" class="justify-content-center align-items-center">
+                                          <div class="alert alert-danger" role="alert"> 
+                                    ${erro}
+                                </div>
+                            </c:if>
+                            
                             <div class="form-group">
                                 <label for="login" class="text-info">Login:</label><br>
                                 <input type="text" name="login" id="login" class="form-control">

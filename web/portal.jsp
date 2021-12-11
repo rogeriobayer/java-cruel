@@ -44,22 +44,23 @@
         </script>
     </head>
    <body>
-    <div id="login">
+    <div id="portal" >
         <h3 class="text-center text-white pt-5">CRUEL</h3>
         <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
+            <div id="portal-row" class="row justify-content-center align-items-center">
+                <div id="portal-column" class="col-md-6">
+                    <div id="portal-box" class="col-md-12">
                         <h3 class="text-center text-info">Cardapio do dia</h3>
                     </div>
-                    <div id="login-box" class="col-md-12">
+                    <div id="portal-box" class="col-md-12">
                         <h3 class="text-center text-info">Cardapio da semana</h3>
                     </div>
-                </div>
-                 <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
+                </div>                     
+                <c:if test="${login.getCargo().equals(\"ger\")}" > 
+                 <div id="portal-column" class="col-md-6">
+                    <div id="portal-box" class="col-md-12">
                <h3 class="text-center text-info">Registrar Cliente</h3>
-                <form id="login-form" class="form" action="ClienteServlet" method="post"> 
+                <form id="portal-form" class="form" action="ClienteServlet" method="post"> 
                             <div class="form-group">
                                 <label for="login" class="text-info">CPF:</label><br>
                                 <input type="text" name="cpf" id="cpf" class="form-control">
@@ -78,7 +79,7 @@
                         </form>                     
                     </div>
                     
-                    <div id="login-box" class="col-md-12">
+                    <div id="portal-box" class="col-md-12">
                         <h3 class="text-center text-info">Consultar os registros</h3>
                         <table class="table">  <thead><tr>
                 <th>Data:</th>
@@ -111,6 +112,7 @@
                     
                    
                 </div>
+            </c:if>
 
             </div>
         </div>

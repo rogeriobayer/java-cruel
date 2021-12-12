@@ -9,7 +9,7 @@ package com.ufpr.tads.web2.beans;
  *
  * @author anado
  */
-public class IngredienteBean {
+public class Ingrediente {
     private int id;
     private String nome;
     private int tipo;
@@ -47,6 +47,6 @@ public class IngredienteBean {
         this.descricao = descricao;
     }
     
-    public IngredienteBean(){
+    public Ingrediente(){
     }
 }

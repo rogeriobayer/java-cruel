@@ -5,7 +5,7 @@
  */
 package com.ufpr.tads.web2.dao.acesso;
 
-import com.ufpr.tads.web2.beans.IngredienteBean;
+import com.ufpr.tads.web2.beans.Ingrediente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +34,7 @@ public class IngredienteDAO {
         this.con = con;
     }
     
-       public IngredienteBean buscar(IngredienteBean ingrediente) throws Exception {
+       public Ingrediente buscar(Ingrediente ingrediente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR)) {
             st.setInt(1, ingrediente.getId());
             ResultSet rs = st.executeQuery();
@@ -51,12 +51,12 @@ public class IngredienteDAO {
         }
     }
 
-    public List<IngredienteBean> buscarTodos() throws Exception {
-        List<IngredienteBean> lista = new ArrayList<>();
+    public List<Ingrediente> buscarTodos() throws Exception {
+        List<Ingrediente> lista = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_TODOS)) {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                IngredienteBean ingrediente = new IngredienteBean();
+                Ingrediente ingrediente = new Ingrediente();
                 ingrediente.setId(rs.getInt("id"));
                 ingrediente.setNome(rs.getString("nome"));
                 ingrediente.setTipo(rs.getInt("tipo"));
@@ -71,7 +71,7 @@ public class IngredienteDAO {
         }
     }
 
-    public void inserir(IngredienteBean ingrediente) throws Exception {
+    public void inserir(Ingrediente ingrediente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_INSERIR)) {
             st.setString(1, ingrediente.getNome());
             st.setInt(2, ingrediente.getTipo());
@@ -83,7 +83,7 @@ public class IngredienteDAO {
         }
     }
 
-    public void remover(IngredienteBean ingrediente) throws Exception {
+    public void remover(Ingrediente ingrediente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_REMOVER)) {
             st.setInt(1, ingrediente.getId());
             st.executeUpdate();
@@ -93,7 +93,7 @@ public class IngredienteDAO {
         }
     }
 
-    public void editar(IngredienteBean ingrediente) throws Exception {
+    public void editar(Ingrediente ingrediente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_EDITAR)) {
 
             st.setString(1, ingrediente.getNome());

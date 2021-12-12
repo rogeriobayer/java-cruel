@@ -9,11 +9,11 @@ package com.ufpr.tads.web2.beans;
  *
  * @author anado
  */
-public class TipoIngredienteBean {
+public class TipoIngrediente {
     private int id;
     private String nome;
     
-    public TipoIngredienteBean(){
+    public TipoIngrediente(){
     }
 
     public int getId() {

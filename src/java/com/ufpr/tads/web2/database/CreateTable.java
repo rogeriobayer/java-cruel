@@ -132,6 +132,21 @@ public class CreateTable {
                     + "tipo int NOT NULL, "
                     + "descricao varchar(255) NOT NULL, "
                     + "foreign key (tipo) references tipo_ingrediente(id));");
+            query.executeUpdate("CREATE TABLE IF NOT EXISTS cardapio("
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "data date NOT NULL);");
+            query.executeUpdate("CREATE TABLE IF NOT EXISTS refeicao("
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "turno varchar(50) NOT NULL,"
+                    + "id_cardapio int NOT NULL, "
+                    + "foreign key (id_cardapio) references cardapio(id));");
+            query.executeUpdate("CREATE TABLE IF NOT EXISTS refeicao_ingrediente("
+                    + "id SERIAL UNIQUE PRIMARY KEY, "
+                    + "qtd int not null, "
+                    + "id_refeicao int NOT NULL, "
+                    + "id_ingrediente int NOT NULL, "
+                    + "foreign key (id_refeicao) references refeicao(id),"
+                    + "foreign key (id_ingrediente) references ingrediente(id));");
             System.out.println("Tabelas criadas com sucesso.");
         } catch (Exception e) {
             System.out.println("Erro ao criar ao criar tabelas.");

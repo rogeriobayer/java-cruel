@@ -5,7 +5,8 @@
  */
 package com.ufpr.tads.web2.dao.acesso;
 
-import com.ufpr.tads.web2.beans.TipoIngredienteBean;
+import com.ufpr.tads.web2.beans.TipoIngrediente;
+import exceptions.DAOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class TipoIngredienteDAO {
     
-    private static final String QUERY_BUSCAR = "SELECT nome FROM tipo_ingrediente WHERE id = ?;";
+    private static final String QUERY_BUSCAR = "SELECT * FROM tipo_ingrediente WHERE id = ?;";
     private static final String QUERY_BUSCAR_TODOS = "SELECT id, nome FROM tipo_ingrediente;";
     private static final String QUERY_INSERIR = "INSERT INTO tipo_ingrediente(nome) VALUES (?);";
     private static final String QUERY_REMOVER = "DELETE FROM tipo_ingrediente WHERE id = ?;";
@@ -34,13 +35,15 @@ public class TipoIngredienteDAO {
         this.con = con;
     }
     
-    public TipoIngredienteBean buscar(TipoIngredienteBean tipo) throws Exception {
+    public TipoIngrediente buscar(TipoIngrediente tipo) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR)) {
             st.setInt(1, tipo.getId());
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                tipo.setNome(rs.getString("nome"));
-                return tipo;
+                TipoIngrediente t = new TipoIngrediente();
+                t.setId(rs.getInt("id"));
+                t.setNome(rs.getString("nome"));
+                return t;
             } else {
                 return null;
             }
@@ -49,25 +52,26 @@ public class TipoIngredienteDAO {
         }
     }
 
-    public List<TipoIngredienteBean> buscarTodos() throws Exception {
-        List<TipoIngredienteBean> lista = new ArrayList<>();
+    
+    public List<TipoIngrediente> buscarTodos() throws DAOException {
+        List<TipoIngrediente> lista = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_TODOS)) {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                TipoIngredienteBean tipo = new TipoIngredienteBean();
+                TipoIngrediente tipo = new TipoIngrediente();
                 tipo.setId(rs.getInt("id"));
                 tipo.setNome(rs.getString("nome"));
                 lista.add(tipo);
             }
             return lista;
         } catch (SQLException e) {
-            throw new Exception("Erro buscando todas os perfis: "
+            throw new DAOException("Erro buscando todas as pessoas: "
                     + QUERY_BUSCAR_TODOS, e);
 
         }
     }
 
-    public void inserir(TipoIngredienteBean tipo) throws Exception {
+    public void inserir(TipoIngrediente tipo) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_INSERIR)) {
             st.setString(1, tipo.getNome());
             st.executeUpdate();
@@ -77,9 +81,9 @@ public class TipoIngredienteDAO {
         }
     }
 
-    public void remover(TipoIngredienteBean tipo) throws Exception {
+    public void remover(int id) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_REMOVER)) {
-            st.setInt(1, tipo.getId());
+            st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException e) {
             throw new Exception("Erro ao deletar categoria: "
@@ -87,7 +91,7 @@ public class TipoIngredienteDAO {
         }
     }
 
-    public void editar(TipoIngredienteBean tipo) throws Exception {
+    public void editar(TipoIngrediente tipo) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_EDITAR)) {
 
             st.setString(1, tipo.getNome());

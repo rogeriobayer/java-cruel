@@ -29,6 +29,9 @@ body {
   height: 420px;
   border: 1px solid #9C9C9C;
   background-color: #EAEAEA;
+  
+  max-height: 418px;
+  overflow: auto;
 }
 #portal .container #portal-row #portal-column #portal-box #portal-form {
   padding: 20px;

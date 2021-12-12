@@ -5,7 +5,7 @@
  */
 package com.ufpr.tads.web2.facade;
 
-import com.ufpr.tads.web2.beans.IngredienteBean;
+import com.ufpr.tads.web2.beans.Ingrediente;
 import com.ufpr.tads.web2.dao.acesso.IngredienteDAO;
 import com.ufpr.tads.web2.dao.connections.ConnectionFactory;
 import java.util.List;
@@ -19,31 +19,31 @@ public class IngredienteFacade {
     public IngredienteFacade(){
     }
     
-    public static IngredienteBean buscar(IngredienteBean ingrediente) throws ClassNotFoundException, Exception {
+    public static Ingrediente buscar(Ingrediente ingrediente) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
         return IngredienteDao.buscar(ingrediente);
     }
 
-    public static List<IngredienteBean> buscarTodos() throws ClassNotFoundException, Exception {
+    public static List<Ingrediente> buscarTodos() throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
         return IngredienteDao.buscarTodos();
     }
 
-    public static void inserir(IngredienteBean ingrediente) throws ClassNotFoundException, Exception {
+    public static void inserir(Ingrediente ingrediente) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
         IngredienteDao.inserir(ingrediente);
     }
 
-    public static void remover(IngredienteBean ingrediente) throws ClassNotFoundException, Exception {
+    public static void remover(Ingrediente ingrediente) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
         IngredienteDao.remover(ingrediente);
     }
     
-    public static void editar(IngredienteBean ingrediente) throws ClassNotFoundException, Exception {
+    public static void editar(Ingrediente ingrediente) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
         IngredienteDao.editar(ingrediente);  

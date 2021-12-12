@@ -5,9 +5,11 @@
  */
 package com.ufpr.tads.web2.facade;
 
-import com.ufpr.tads.web2.beans.TipoIngredienteBean;
+import com.ufpr.tads.web2.beans.TipoIngrediente;
 import com.ufpr.tads.web2.dao.acesso.TipoIngredienteDAO;
 import com.ufpr.tads.web2.dao.connections.ConnectionFactory;
+import exceptions.DAOException;
+import exceptions.FacadeException;
 import java.util.List;
 
 /**
@@ -15,37 +17,46 @@ import java.util.List;
  * @author anado
  */
 public class TipoIngredienteFacade {
-    
-    public TipoIngredienteFacade(){
-    }
-    
-    public static TipoIngredienteBean buscar(TipoIngredienteBean tipo  ) throws ClassNotFoundException, Exception {
-        ConnectionFactory conn = new ConnectionFactory();
-        TipoIngredienteDAO TipoIngredienteDao = new TipoIngredienteDAO(conn.getConnection());
-        return TipoIngredienteDao.buscar(tipo  );
+
+    public TipoIngredienteFacade() {
     }
 
-    public static List<TipoIngredienteBean> buscarTodos() throws ClassNotFoundException, Exception {
-        ConnectionFactory conn = new ConnectionFactory();
-        TipoIngredienteDAO TipoIngredienteDao = new TipoIngredienteDAO(conn.getConnection());
-        return TipoIngredienteDao.buscarTodos();
+    public static TipoIngrediente buscar(TipoIngrediente tipo) throws ClassNotFoundException, Exception {
+        try (ConnectionFactory factory = new ConnectionFactory()) {
+            TipoIngredienteDAO bd = new TipoIngredienteDAO(factory.getConnection());
+            return bd.buscar(tipo);
+        } catch (DAOException e) {
+            throw new FacadeException("Erro ao buscar tipo");
+        }
     }
 
-    public static void inserir(TipoIngredienteBean tipo) throws ClassNotFoundException, Exception {
-        ConnectionFactory conn = new ConnectionFactory();
-        TipoIngredienteDAO TipoIngredienteDao = new TipoIngredienteDAO(conn.getConnection());
-        TipoIngredienteDao.inserir(tipo);
+    public static List<TipoIngrediente> buscarTodos() throws ClassNotFoundException, Exception {
+        try (ConnectionFactory factory = new ConnectionFactory()) {
+            TipoIngredienteDAO bd = new TipoIngredienteDAO(factory.getConnection());
+            return bd.buscarTodos();
+        } catch (DAOException e) {
+            throw new FacadeException("Erro ao buscar todos os tipo");
+        }
     }
 
-    public static void remover(TipoIngredienteBean tipo) throws ClassNotFoundException, Exception {
+    public static void inserir(TipoIngrediente t) throws FacadeException, Exception {
+        try (ConnectionFactory factory = new ConnectionFactory()) {
+            TipoIngredienteDAO bd = new TipoIngredienteDAO(factory.getConnection());
+            bd.inserir(t);
+        } catch (DAOException e) {
+            throw new FacadeException("Erro ao inserir tipo");
+        }
+    }
+
+    public static void remover(int id) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         TipoIngredienteDAO TipoIngredienteDao = new TipoIngredienteDAO(conn.getConnection());
-        TipoIngredienteDao.remover(tipo);
-    } 
-    
-    public static void editar(TipoIngredienteBean tipo) throws ClassNotFoundException, Exception {
+        TipoIngredienteDao.remover(id);
+    }
+
+    public static void editar(TipoIngrediente tipo) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         TipoIngredienteDAO TipoIngredienteDao = new TipoIngredienteDAO(conn.getConnection());
-        TipoIngredienteDao.remover(tipo);   
+        TipoIngredienteDao.editar(tipo);
     }
 }

@@ -22,15 +22,15 @@ public class ConnectionFactory implements AutoCloseable {
     
     private Connection con = null;
 
-    public Connection getConnection() throws Exception {
+    public Connection getConnection() {
         if (con == null) {
             try {
                 Class.forName(DRIVER);
                 con = DriverManager.getConnection(URL, LOGIN, SENHA);
             } catch (ClassNotFoundException e) {
-                throw new Exception("Driver do banco não encontrado: " + DRIVER, e);
+                throw new RuntimeException("Driver do banco não encontrado: " + DRIVER, e);
             } catch (SQLException e) {
-                throw new Exception("Erro conectando ao BD: " + URL + "/" + LOGIN + "/" + SENHA, e);
+                throw new RuntimeException("Erro conectando ao BD: " + URL + "/" + LOGIN + "/" + SENHA, e);
             }
         }
         return con;

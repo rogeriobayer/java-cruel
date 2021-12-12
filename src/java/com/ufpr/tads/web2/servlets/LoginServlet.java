@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         LoginBean user = LoginFacade.buscar(inputUser);
         if (user != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("login", user);
+            session.setAttribute("login", user);           
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/portal.jsp");
             rd.forward(request, response);
         } else {

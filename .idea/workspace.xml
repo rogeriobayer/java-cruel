@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="66f171bf-c099-4714-98a8-ea344f7141fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/web/revisarAtendimento.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/beans/RegistrarClienteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/beans/RegistrarClienteBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/dao/acesso/RegistrarClienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/dao/acesso/RegistrarClienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/facade/RegistrarClienteFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/facade/RegistrarClienteFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/servlets/ClienteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/com/ufpr/tads/web2/servlets/ClienteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/portalatendente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/portalatendente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+</project>

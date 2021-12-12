@@ -13,25 +13,27 @@ import java.util.Date;
  * @author anado
  */
 public class RegistrarClienteBean {
-    private int id;
+    private Integer id;
     private Date dataHora;
     private String cpf;
     private double valor;
+    private String justificativa;
 
     public RegistrarClienteBean() {
     }
 
-    public RegistrarClienteBean(String cpf, Date dataHora, double valor) {
+    public RegistrarClienteBean(Integer id, String cpf, Date dataHora, double valor) {
+        this.id = id;
         this.cpf = cpf;
         this.dataHora = dataHora;
         this.valor = valor;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,5 +60,14 @@ public class RegistrarClienteBean {
     public void setValor(double valor) {
         this.valor = valor;
     }
+    
+    public String getJustificativa() {
+        return justificativa;
+    }
+
+    public void setJustificativa(String justificativa) {
+        this.justificativa = justificativa;
+    }
 
 }
+

@@ -27,13 +27,13 @@
     <form method="post" action="NutricionistaServlet?action=cadastrarCardapio">
         <div class="form-group">
             <label>Carne</label>
-            <select id="carneAlmoco" class="custom-select">
+            <select id="carneAlmoco" name="carneAlmoco" class="custom-select">
                 <option selected>Selecione a carne</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
-            <input class="form-control" id="qtd" placeholder="Quantidade">
+            <input class="form-control" id="qtd" name="qtdCarneAlmoco" placeholder="Quantidade">
         </div>
         <div class="form-group">
             <label>Arroz</label>

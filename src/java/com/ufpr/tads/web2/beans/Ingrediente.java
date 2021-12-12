@@ -12,7 +12,7 @@ package com.ufpr.tads.web2.beans;
 public class Ingrediente {
     private int id;
     private String nome;
-    private int tipo;
+    private TipoIngrediente tipo;
     private String descricao;
 
     public int getId() {
@@ -31,14 +31,6 @@ public class Ingrediente {
         this.nome = nome;
     }
 
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -46,6 +38,16 @@ public class Ingrediente {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public TipoIngrediente getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoIngrediente tipo) {
+        this.tipo = tipo;
+    }
+    
+    
     
     public Ingrediente(){
     }

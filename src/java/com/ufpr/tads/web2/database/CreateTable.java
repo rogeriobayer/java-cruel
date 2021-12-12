@@ -142,7 +142,7 @@ public class CreateTable {
                     + "foreign key (id_cardapio) references cardapio(id));");
             query.executeUpdate("CREATE TABLE IF NOT EXISTS refeicao_ingrediente("
                     + "id SERIAL UNIQUE PRIMARY KEY, "
-                    + "qtd int not null, "
+                    + "quantidade int not null, "
                     + "id_refeicao int NOT NULL, "
                     + "id_ingrediente int NOT NULL, "
                     + "foreign key (id_refeicao) references refeicao(id),"

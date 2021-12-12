@@ -10,7 +10,7 @@ public class Refeicao {
     private int id;
     private String turno;
     private Cardapio cardapio;
-    private ArrayList<Ingrediente> ingredientes;
+    private ArrayList<RefeicaoIngrediente> refIng;
 
     public Refeicao() {
     }
@@ -23,8 +23,12 @@ public class Refeicao {
         return turno;
     }
 
-    public Cardapio getCalendario() {
+    public Cardapio getCardapio() {
         return cardapio;
+    }
+
+    public ArrayList<RefeicaoIngrediente> getRefIng() {
+        return refIng;
     }
 
     public void setId(int id) {
@@ -35,9 +39,16 @@ public class Refeicao {
         this.turno = turno;
     }
 
-    public void setCalendario(Cardapio calendario) {
-        this.cardapio = calendario;
+    public void setCardapio(Cardapio cardapio) {
+        this.cardapio = cardapio;
     }
+
+    public void setRefIng(ArrayList<RefeicaoIngrediente> refIng) {
+        this.refIng = refIng;
+    }
+    
+    
+    
     
     
 }

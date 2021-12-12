@@ -37,15 +37,19 @@
             <button class="btn btn-primary align-self-center" onclick="location.href='LogoutServlet'" type="button">Sair </button>
         </div>
         <div class="container">
+
             <div id="portal-row" class="row justify-content-center ">
-                <div id="portal-column" class="col-md-6">
-                    <div id="portal-box" class="col-md-12">
-                        <h3 class="text-center text-info">Cardapio do dia</h3>
-                    </div>
-                    <div id="portal-box" class="col-md-12">
-                        <h3 class="text-center text-info">Cardapio da semana</h3>
-                    </div>
-                </div>                     
+                 <c:if test="${login.getCargo().equals(\"ate\")}" > 
+                    <div id="portal-column" class="col-md-6">
+                        <div id="portal-box" class="col-md-12">
+                            <h3 class="text-center text-info">Cardapio do dia</h3>
+                        </div>
+                        <div id="portal-box" class="col-md-12">
+                            <h3 class="text-center text-info">Cardapio da semana</h3>
+                        </div>
+                    </div>  
+                </c:if>
+
                 <c:if test="${login.getCargo().equals(\"ate\")}" > 
                     <%@ include file="portalatendente.jsp" %>
                 </c:if>

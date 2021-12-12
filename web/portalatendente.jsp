@@ -74,7 +74,7 @@
       <form id="portal-form" class="form" action="ClienteServlet?action=insert" method="post">
          <div class="form-group">
             <label for="login" class="text-info">CPF:</label><br>
-            <input type="text" name="cpf" id="cpf" class="form-control">
+            <input type="text" name="cpf" id="cpf" class="form-control" required>
          </div>
          <div class="form-group">
             <label for="datepicker" class="text-info">Data e Hora</label><br>
@@ -82,7 +82,7 @@
          </div>
          <div class="form-group">
             <label for="price" class="text-info">Valor Pago (R$):</label><br>
-            <input type="text" name="price" id="price" class="form-control">
+            <input type="text" name="price" id="price" class="form-control" required>
          </div>
          <div class="form-group">
             <input type="submit" name="submit" class="btn btn-info btn-md" value="Salvar Registro">

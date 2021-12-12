@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" errorPage="erro.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:if test="${empty param.login}" >
+<c:if test="${empty login}" >
     <jsp:forward page="login.jsp"> 
         <jsp:param name="erro" value="Usuário deve se autenticar para acessar o sistema"/> 
     </jsp:forward> 

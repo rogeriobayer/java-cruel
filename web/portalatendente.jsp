@@ -15,7 +15,7 @@
          }
 
            d = new Date();
-           $('input[type=datetime-local]').val(d.getFullYear()+"-"+zeroPadded(d.getMonth() + 1)+"-"+zeroPadded(d.getDate())+"T"+d.getHours()+":"+d.getMinutes()+":00");
+           $('input[type=datetime-local]').val(d.getFullYear()+"-"+zeroPadded(d.getMonth() + 1)+"-"+zeroPadded(d.getDate())+"T"+zeroPadded(d.getHours())+":"+zeroPadded(d.getMinutes())+":00");
              $('#price').mask('#.##0,00', {reverse: true});
          });
 </script>
@@ -29,7 +29,7 @@
          </div>
          <div class="form-group">
             <label for="datepicker" class="text-info">Data e Hora</label><br>
-            <input type="datetime-local" id="publishDate" required/>
+            <input type="datetime-local" name="dataHora" id="publishDate" required/>
          </div>
          <div class="form-group">
             <label for="price" class="text-info">Valor Pago (R$):</label><br>

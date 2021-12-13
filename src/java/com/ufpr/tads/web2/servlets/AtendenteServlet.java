@@ -33,16 +33,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AtendenteServlet", urlPatterns = {"/AtendenteServlet"})
 public class AtendenteServlet extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.lang.ClassNotFoundException
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, Exception {
@@ -95,6 +85,24 @@ public class AtendenteServlet extends HttpServlet {
 //                        request.setAttribute("atendimento", registro);
                         RequestDispatcher dispatcher = request.getRequestDispatcher("revisaratendimento.jsp");
                         dispatcher.forward(request, response);
+                        break;
+                    }
+
+                    case "new": {
+                        AtendenteBean at = new AtendenteBean();
+                        at.setId(Integer.parseInt(request.getParameter("id")));
+                        at.setNome(request.getParameter("nome"));
+                        at.setCpf(request.getParameter("cpf"));
+                        at.setEmail(request.getParameter("email"));
+                        at.setEndereco(request.getParameter("endereco"));
+                        at.setTelefone(request.getParameter("telefone"));
+
+//                        Integer id = Integer.valueOf(request.getParameter("id"));;
+//                        RegistrarClienteBean registro = registrarClienteFacade.buscarRegistro(id);
+//                        request.setAttribute("action", "update");
+//                        request.setAttribute("atendimento", registro);
+                        response.sendRedirect("/PortalServlet");
+
                         break;
                     }
                 }

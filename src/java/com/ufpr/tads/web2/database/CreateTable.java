@@ -94,6 +94,7 @@ public class CreateTable {
                     + "senha varchar(255) NOT NULL, "
                     + "CPF varchar(11) UNIQUE NOT NULL, "
                     + "nome varchar(255) NOT NULL,"
+                    + "telefone varchar(11) NOT NULL, "
                     + "email varchar(255) UNIQUE NOT NULL, "
                     + "data date NOT NULL, "
                     + "endereco varchar(255) NOT NULL);");

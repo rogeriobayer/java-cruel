@@ -1,9 +1,14 @@
 package com.ufpr.tads.web2.servlets;
 
+import com.ufpr.tads.web2.beans.AtendenteBean;
 import com.ufpr.tads.web2.beans.LoginBean;
+import com.ufpr.tads.web2.beans.TipoIngrediente;
+import com.ufpr.tads.web2.facade.AtendenteFacade;
 import com.ufpr.tads.web2.facade.LoginFacade;
+import com.ufpr.tads.web2.facade.TipoIngredienteFacade;
 //import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.util.List;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 //import jakarta.servlet.http.HttpServlet;
@@ -44,7 +49,12 @@ public class LoginServlet extends HttpServlet {
         LoginBean user = LoginFacade.buscar(inputUser);
         if (user != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("login", user);           
+            session.setAttribute("login", user);
+            if (user.getCargo().equals("ger")) {
+                List<AtendenteBean> atendentes = AtendenteFacade.buscarTodos();
+                request.setAttribute("atendentes", atendentes);
+            }
+            request.setAttribute("link", "NutricionistaServlet?action=novoTipoIngrediente");
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/portal.jsp");
             rd.forward(request, response);
         } else {

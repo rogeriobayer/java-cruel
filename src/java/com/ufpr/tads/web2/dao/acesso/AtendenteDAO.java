@@ -19,13 +19,13 @@ import org.apache.commons.codec.digest.DigestUtils;
  * @author anado
  */
 public class AtendenteDAO {
-    
+
     private static final String QUERY_BUSCAR = "SELECT id, login, senha, CPF, nome, email, data, endereco, telefone FROM cadastro_atendente WHERE id = ?;";
     private static final String QUERY_BUSCAR_TODOS = "SELECT id, CPF, nome, email, data, endereco, telefone FROM cadastro_atendente;";
     private static final String QUERY_INSERIR = "INSERT INTO cadastro_atendente(login, senha, CPF, nome, email, data, endereco, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String QUERY_REMOVER = "DELETE FROM cadastro_atendente WHERE id = ?;";
     private static final String QUERY_EDITAR = "UPDATE cadastro_atendente SET login = ?, senha = ?, CPF = ?, nome = ?, email = ?, data = ?, endereco = ?, telefone = ? WHERE id = ?;";
-    
+
     private Connection con = null;
 
     public AtendenteDAO(Connection con) throws Exception {
@@ -34,18 +34,19 @@ public class AtendenteDAO {
         }
         this.con = con;
     }
-    
+
     public AtendenteBean buscar(AtendenteBean Atendente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR)) {
 
             st.setInt(1, Atendente.getId());
 
             ResultSet rs = st.executeQuery();
-            
+
             if (rs.next()) {
                 Atendente.setId(rs.getInt("id"));
                 Atendente.setLogin(rs.getString("login"));
-                Atendente.setSenha(rs.getString(DigestUtils.sha256Hex(Atendente.getSenha())));
+//                System.out.print(rs.getString("senha"));
+//                Atendente.setSenha(rs.getString(DigestUtils.sha256Hex(rs.getString("senha"))));
                 Atendente.setCpf(rs.getString("CPF"));
                 Atendente.setNome(rs.getString("nome"));
                 Atendente.setEmail(rs.getString("email"));
@@ -60,8 +61,8 @@ public class AtendenteDAO {
             throw new Exception("Erro buscando login: " + Atendente.getId(), e);
         }
     }
-    
-    public List<AtendenteBean> buscarTodos() throws Exception{
+
+    public List<AtendenteBean> buscarTodos() throws Exception {
         List<AtendenteBean> lista = new ArrayList<>();
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_TODOS)) {
             ResultSet rs = st.executeQuery();
@@ -83,7 +84,7 @@ public class AtendenteDAO {
 
         }
     }
-    
+
     public void inserir(AtendenteBean Atendente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_INSERIR)) {
             String sha256hex = DigestUtils.sha256Hex(Atendente.getSenha());
@@ -103,17 +104,17 @@ public class AtendenteDAO {
                     + QUERY_INSERIR, e);
         }
     }
-    
+
     public void remover(AtendenteBean Atendente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_REMOVER)) {
             st.setInt(1, Atendente.getId());
             st.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new Exception("Erro ao criar login: "
                     + QUERY_REMOVER, e);
         }
     }
-    
+
     public void editar(AtendenteBean Atendente) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_EDITAR)) {
             String sha256hex = DigestUtils.sha256Hex(Atendente.getSenha());
@@ -127,7 +128,7 @@ public class AtendenteDAO {
             st.setString(7, Atendente.getEndereco());
             st.setString(8, Atendente.getTelefone());
             st.setInt(9, Atendente.getId());
-            
+
             st.executeUpdate();
         } catch (SQLException e) {
             throw new Exception("Erro ao editar login: "

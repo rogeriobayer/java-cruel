@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cardápios</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -19,7 +18,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="style/footer.css" type="text/css"/>
     </head>
-</head>
 <body>
     <jsp:include page="./utilitarios/navbarNutricionista.jsp" />
 

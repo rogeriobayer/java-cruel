@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cardápios</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -19,43 +18,60 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="style/footer.css" type="text/css"/>
     </head>
-</head>
 <body>
     <jsp:include page="./utilitarios/navbarNutricionista.jsp" />
 
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Selecione o mes</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-    </select>
+    <div class = "container">
+        <form method="post" action="NutricionistaServlet?action=cardapiosMes">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <select name="mes" id="mes" class="form-control" aria-label="Default select example">
+                        <option selected>Selecione o mes</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control" id="ano" name="ano" aria-label="Default select example">
+                </div>
+                <div class="form-group col-md-1">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">dia</th>
-                <th scope="col">Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">dia</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="cardapios" items="${cardapios}">
+                <td>${cardapios.diaMes}</td>
                 <td>
-                    <a href="NutricionistaServlet?action=cadastrarCardapioForm" class="btn btn-primary">Cadastrar</a>
-                    <a href="NutricionistaServlet?action=consultarCardapio&id=1" class="btn btn-primary">Consultar</a>
+                    <a href="NutricionistaServlet?action=consultarCardapio&id=${cardapios.id}" class="btn btn-primary">Consultar</a>
+                    
                 </td>
-            </tr>
-        </tbody>
-    </table>
+            </c:forEach>
+            </tbody>
+        </table>
+        <a href="NutricionistaServlet?action=cadastrarCardapioForm" class="btn btn-primary">Cadastrar</a>
+    </div>
+
+
 
 
 </body>

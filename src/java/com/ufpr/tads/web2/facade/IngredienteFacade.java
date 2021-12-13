@@ -19,10 +19,10 @@ public class IngredienteFacade {
     public IngredienteFacade(){
     }
     
-    public static Ingrediente buscar(Ingrediente ingrediente) throws ClassNotFoundException, Exception {
+    public static Ingrediente buscar(Integer id) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
-        return IngredienteDao.buscar(ingrediente);
+        return IngredienteDao.buscar(id);
     }
 
     public static List<Ingrediente> buscarTodos() throws ClassNotFoundException, Exception {
@@ -37,10 +37,10 @@ public class IngredienteFacade {
         IngredienteDao.inserir(ingrediente);
     }
 
-    public static void remover(Ingrediente ingrediente) throws ClassNotFoundException, Exception {
+    public static void remover(Integer id) throws ClassNotFoundException, Exception {
         ConnectionFactory conn = new ConnectionFactory();
         IngredienteDAO IngredienteDao = new IngredienteDAO(conn.getConnection());
-        IngredienteDao.remover(ingrediente);
+        IngredienteDao.remover(id);
     }
     
     public static void editar(Ingrediente ingrediente) throws ClassNotFoundException, Exception {

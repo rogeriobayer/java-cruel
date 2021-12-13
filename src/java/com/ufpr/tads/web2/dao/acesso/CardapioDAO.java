@@ -1,13 +1,22 @@
 package com.ufpr.tads.web2.dao.acesso;
 
 import com.ufpr.tads.web2.beans.Cardapio;
+import com.ufpr.tads.web2.beans.Refeicao;
+import com.ufpr.tads.web2.beans.RefeicaoIngrediente;
+import com.ufpr.tads.web2.facade.RefeicaoFacade;
+import com.ufpr.tads.web2.facade.RefeicaoIngredienteFacade;
 import exceptions.DAOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,13 +24,12 @@ import java.util.List;
  */
 public class CardapioDAO {
 
-    private static final String QUERY_BUSCAR = "select cardapio.id as cardapio_id, cardapio.data, refeicao.id as refeicao_id, refeicao.turno, ingrediente.nome from cardapio\n"
-            + "left join refeicao in cardapio.id = refeicao.id_cardapio\n"
-            + "left join refeicao_ingrediente in refeicao.id = refeicao_ingrediente.id_refeicao\n"
-            + "left join ingrediente in refeicao_ingrediente.id_ingrediente = ingrediente.id\n"
-            + "where cardapio.id = ?;";
+    private static final String QUERY_BUSCAR_CARDAPIO = "SELECT id, data from cardapio where id = ?;";
 
-    private static final String QUERY_BUSCA_MESES = "select distinct to_number(to_char(data, 'MM'),'99G999D9S') mes from cardapio;";
+    private static final String QUERY_BUSCAR_INGREDIENTES = "SELECT id, id_refeicao, id_ingrediente, quantidade, nome from refeicao_ingrediente, ingrediente\n"
+            + "where ingrediente.id = id_ingrediente and id_refeicao = ?;";
+
+    private static final String QUERY_BUSCAR_TODOS = "select *, cast(date_part('day',data) as integer) as diaMes from cardapio;";
 
     private Connection con = null;
 
@@ -32,36 +40,84 @@ public class CardapioDAO {
         this.con = con;
     }
 
-    public List<Integer> buscarMeses() throws DAOException {
-        List<Integer> lista = new ArrayList<>();
-        try (PreparedStatement st = con.prepareStatement(QUERY_BUSCA_MESES)) {
+    public CardapioDAO() {
+
+    }
+
+    public List<Cardapio> buscarTodos() throws DAOException {
+        List<Cardapio> lista = new ArrayList<>();
+        try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_TODOS)) {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getInt("mes"));
-                lista.add(rs.getInt("mes"));
+                Cardapio tipo = new Cardapio();
+                tipo.setId(rs.getInt("id"));
+                tipo.setData(rs.getDate("data"));
+                tipo.setDiaMes(rs.getInt("diaMes"));
+                lista.add(tipo);
             }
             return lista;
         } catch (SQLException e) {
             throw new DAOException("Erro buscando todas as pessoas: "
-                    + QUERY_BUSCA_MESES, e);
+                    + QUERY_BUSCAR_TODOS, e);
 
         }
     }
 
-    public Cardapio buscar(int id) throws Exception {
-        try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR)) {
-            st.setInt(1, id);
+    public List<Cardapio> buscarMes(int mes, int ano) throws Exception {
+        int diasMes = getQuantidadeDiasByMes(mes);
+        String QUERY_BUSCA_MES = "select id, data, cast(date_part('day',data) as integer) as diaMes from cardapio where data between '01-" + mes + "-" + ano + "' and '" + diasMes + "-" + mes + "-" + ano + "';";
+        try (PreparedStatement st = con.prepareStatement(QUERY_BUSCA_MES)) {
+            List<Cardapio> lista = new ArrayList<>();
+
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 Cardapio t = new Cardapio();
                 t.setId(rs.getInt("id"));
                 t.setData(rs.getDate("data"));
-                return t;
-            } else {
-                return null;
+                t.setDiaMes(rs.getInt("diaMes"));
+                lista.add(t);
             }
+            return lista;
         } catch (SQLException e) {
-            throw new Exception("Erro buscando tipo: " + id, e);
+            throw new Exception("Erro buscando mes: " + mes, e);
         }
     }
+
+    public Cardapio buscar(int cardapio_id) throws Exception {
+
+        Cardapio t = new Cardapio();
+        try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_CARDAPIO)) {
+            st.setInt(1, cardapio_id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                t.setId(rs.getInt("id"));
+                t.setData(rs.getDate("data"));
+
+                List<Refeicao> refeicoes = RefeicaoFacade.buscar(cardapio_id);
+                refeicoes.forEach((Refeicao ref) -> {
+                    System.out.println(ref.getId());
+                    List<RefeicaoIngrediente> listaRefeicaoIngrediente = null;
+                    try {
+                        listaRefeicaoIngrediente = RefeicaoIngredienteFacade.buscar(ref.getId());
+                    } catch (Exception ex) {
+                        Logger.getLogger(CardapioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ref.setRefIng(listaRefeicaoIngrediente);
+                });
+                t.setRefeicoes(refeicoes);
+
+            }
+            return t;
+        } catch (SQLException e) {
+            throw new Exception("Erro buscando cardapio de id: " + cardapio_id, e);
+        }
+    }
+
+    public static int getQuantidadeDiasByMes(int mes) {
+        Calendar datas = new GregorianCalendar();
+        datas.set(Calendar.MONTH, mes - 1);//2
+        int quantidadeDias = datas.getActualMaximum(Calendar.DAY_OF_MONTH);
+        return quantidadeDias;
+    }
+
 }

@@ -22,28 +22,26 @@
 </head>
 <body>
     <jsp:include page="./utilitarios/navbarNutricionista.jsp" />
-    <h1>Cardapio do dia 12/12/2021</h1>
+    <div class = "container">
+        <h1>Cardapio do dia ${cardapio.data}</h1>
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            Almoco
+        <div class="row">
+            <c:forEach var="refeicoes" items="${cardapio.refeicoes}">
+            <div class="card col-md-6" >
+                <div class="card-header">
+                    ${refeicoes.turno}
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <c:forEach var="refIng" items="${refeicoes.refIng}">
+                            <li class="list-group-item">${refIng.nome}</li>
+                            </c:forEach>
+                    </ul>
+                </div>
+            </div>
+        </c:forEach>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-    </div>
+        
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            Janta
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-    </div>
 </body>
 </html>

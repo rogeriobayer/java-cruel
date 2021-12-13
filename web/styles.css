@@ -39,3 +39,9 @@ body {
 #portal .container #portal-row #portal-column #portal-box #portal-form #register-link {
   margin-top: -85px;
 }
+
+.portaluser-box {
+ 
+  height: 820px !important;
+
+}

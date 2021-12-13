@@ -4,6 +4,7 @@ import com.ufpr.tads.web2.beans.Cardapio;
 import com.ufpr.tads.web2.beans.Refeicao;
 import com.ufpr.tads.web2.beans.RefeicaoIngrediente;
 import com.ufpr.tads.web2.facade.RefeicaoFacade;
+import com.ufpr.tads.web2.facade.RefeicaoIngredienteFacade;
 import exceptions.DAOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -80,7 +84,7 @@ public class CardapioDAO {
     }
 
     public Cardapio buscar(int cardapio_id) throws Exception {
-        List<RefeicaoIngrediente> listaRefeicaoIngrediente = new ArrayList<>();
+
         Cardapio t = new Cardapio();
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_CARDAPIO)) {
             st.setInt(1, cardapio_id);
@@ -88,13 +92,19 @@ public class CardapioDAO {
             if (rs.next()) {
                 t.setId(rs.getInt("id"));
                 t.setData(rs.getDate("data"));
-                
-                List<Refeicao> refeicoes = RefeicaoFacade.buscar(cardapio_id);
-                t.setRefeicoes(refeicoes);
 
-                refeicoes.forEach(ref -> {
+                List<Refeicao> refeicoes = RefeicaoFacade.buscar(cardapio_id);
+                refeicoes.forEach((Refeicao ref) -> {
                     System.out.println(ref.getId());
+                    List<RefeicaoIngrediente> listaRefeicaoIngrediente = null;
+                    try {
+                        listaRefeicaoIngrediente = RefeicaoIngredienteFacade.buscar(ref.getId());
+                    } catch (Exception ex) {
+                        Logger.getLogger(CardapioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ref.setRefIng(listaRefeicaoIngrediente);
                 });
+                t.setRefeicoes(refeicoes);
 
             }
             return t;

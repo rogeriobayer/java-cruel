@@ -192,10 +192,15 @@ public class NutricionistaServlet extends HttpServlet {
                 Cardapio cardapio = CardapioFacade.buscar(id);
                 request.setAttribute("cardapio", cardapio);
                 
+                System.out.println(cardapio);
+                
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/cardapioDia.jsp");
                 rd.forward(request, response);
 
             } else if (action.equals("cadastrarCardapioForm")) {
+                List<Ingrediente> ingredientes = IngredienteFacade.buscarTodos();
+                request.setAttribute("ingredientes", ingredientes);
+                
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/cardapioCadastrar.jsp");
                 rd.forward(request, response);
 

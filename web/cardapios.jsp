@@ -51,7 +51,6 @@
 
         </form>
 
-
         <table class="table">
             <thead>
                 <tr>
@@ -64,11 +63,12 @@
                 <td>${cardapios.diaMes}</td>
                 <td>
                     <a href="NutricionistaServlet?action=consultarCardapio&id=${cardapios.id}" class="btn btn-primary">Consultar</a>
-                    <a href="NutricionistaServlet?action=cadastrarCardapioForm" class="btn btn-primary">Cadastrar</a>
+                    
                 </td>
             </c:forEach>
             </tbody>
         </table>
+        <a href="NutricionistaServlet?action=cadastrarCardapioForm" class="btn btn-primary">Cadastrar</a>
     </div>
 
 

@@ -36,9 +36,9 @@ public class RefeicaoDAO {
     public RefeicaoDAO() {
     }
     
-    public List<Refeicao> buscar(Integer idContrato) throws Exception {
+    public List<Refeicao> buscar(Integer idRefeicao) throws Exception {
         try (PreparedStatement st = con.prepareStatement(QUERY_BUSCAR_POR_CONTRATO)) {
-            st.setInt(1, idContrato);
+            st.setInt(1, idRefeicao);
             ResultSet rs = st.executeQuery();
             List<Refeicao> lista = new ArrayList<>();
             if (rs.next()) {
@@ -49,7 +49,7 @@ public class RefeicaoDAO {
             } 
             return lista;
         } catch (SQLException e) {
-            throw new Exception("Erro buscando tipo: " + idContrato, e);
+            throw new Exception("Erro buscando tipo: " + idRefeicao, e);
         }
     }
 }

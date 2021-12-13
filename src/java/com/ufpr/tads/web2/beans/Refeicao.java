@@ -1,6 +1,7 @@
 package com.ufpr.tads.web2.beans;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -10,7 +11,7 @@ public class Refeicao {
     private int id;
     private String turno;
     private Cardapio cardapio;
-    private ArrayList<RefeicaoIngrediente> refIng;
+    private List<RefeicaoIngrediente> refIng;
 
     public Refeicao() {
     }
@@ -27,7 +28,7 @@ public class Refeicao {
         return cardapio;
     }
 
-    public ArrayList<RefeicaoIngrediente> getRefIng() {
+    public List<RefeicaoIngrediente> getRefIng() {
         return refIng;
     }
 
@@ -43,7 +44,7 @@ public class Refeicao {
         this.cardapio = cardapio;
     }
 
-    public void setRefIng(ArrayList<RefeicaoIngrediente> refIng) {
+    public void setRefIng(List<RefeicaoIngrediente> refIng) {
         this.refIng = refIng;
     }
     

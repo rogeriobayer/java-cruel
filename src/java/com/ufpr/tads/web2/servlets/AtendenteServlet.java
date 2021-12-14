@@ -145,10 +145,10 @@ public class AtendenteServlet extends HttpServlet {
                     String price = request.getParameter("price");
                     String justificativa = request.getParameter("justificativa");
 
-                    RegistrarClienteBean inputCliente = new RegistrarClienteBean(id, cpf, getDate(dataHora), getValor(price));
-                    inputCliente.setJustificativa(justificativa);
+                    //RegistrarClienteBean inputCliente = new RegistrarClienteBean(id, cpf, getDate(dataHora), getValor(price));
+                    //inputCliente.setJustificativa(justificativa);
 
-                    registrarClienteFacade.atualizaRegistro(inputCliente);
+                    //registrarClienteFacade.atualizaRegistro(inputCliente);
                     break;
                 }
                 case "insert": {
@@ -156,8 +156,8 @@ public class AtendenteServlet extends HttpServlet {
                     String dataHora = request.getParameter("dataHora");
                     String price = request.getParameter("price");
 
-                    RegistrarClienteBean inputCliente = new RegistrarClienteBean(null, cpf, getDate(dataHora), getValor(price));
-                    registrarClienteFacade.registrarAtendimento(inputCliente);
+                    //RegistrarClienteBean inputCliente = new RegistrarClienteBean(null, cpf, getDate(dataHora), getValor(price));
+                    //registrarClienteFacade.registrarAtendimento(inputCliente);
                 }
             }
 

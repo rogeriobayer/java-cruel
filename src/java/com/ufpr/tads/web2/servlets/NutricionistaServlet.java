@@ -8,6 +8,7 @@ package com.ufpr.tads.web2.servlets;
 import com.ufpr.tads.web2.beans.Cardapio;
 import com.ufpr.tads.web2.beans.TipoIngrediente;
 import com.ufpr.tads.web2.beans.Ingrediente;
+import com.ufpr.tads.web2.beans.Refeicao;
 import com.ufpr.tads.web2.facade.CardapioFacade;
 import com.ufpr.tads.web2.facade.IngredienteFacade;
 import com.ufpr.tads.web2.facade.TipoIngredienteFacade;
@@ -161,7 +162,6 @@ public class NutricionistaServlet extends HttpServlet {
                 
                 List<TipoIngrediente> tiposIngredientes = TipoIngredienteFacade.buscarTodos();
                 request.setAttribute("tiposIngredientes", tiposIngredientes);
-                System.out.println("CARADAPIOSSS" + tiposIngredientes);
                 
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/cardapios.jsp");
                 rd.forward(request, response);
@@ -192,8 +192,10 @@ public class NutricionistaServlet extends HttpServlet {
                 Cardapio cardapio = CardapioFacade.buscar(id);
                 request.setAttribute("cardapio", cardapio);
                 
-                System.out.println(cardapio);
+                List<Refeicao> refeicoes = cardapio.getRefeicoes();
                 
+                //System.out.println(refeicoes);
+                                
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/cardapioDia.jsp");
                 rd.forward(request, response);
 

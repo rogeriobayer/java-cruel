@@ -41,7 +41,7 @@ public class RefeicaoDAO {
             st.setInt(1, idRefeicao);
             ResultSet rs = st.executeQuery();
             List<Refeicao> lista = new ArrayList<>();
-            if (rs.next()) {
+            while (rs.next()) {
                 Refeicao t = new Refeicao();
                 t.setId(rs.getInt("id"));
                 t.setTurno(rs.getString("turno"));

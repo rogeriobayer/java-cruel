@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <c:forEach var="refIng" items="${refeicoes.refIng}">
-                            <li class="list-group-item">${refIng.nome}</li>
+                            <li class="list-group-item">${refIng.nome}, quantidade: ${refIng.quantidade}</li>
                             </c:forEach>
                     </ul>
                 </div>

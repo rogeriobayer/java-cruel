@@ -41,7 +41,7 @@ public class RefeicaoIngredienteDAO {
             st.setInt(1, idContrato);
             ResultSet rs = st.executeQuery();
             List<RefeicaoIngrediente> lista = new ArrayList<>();
-            if (rs.next()) {
+            while (rs.next()) {
                 RefeicaoIngrediente t = new RefeicaoIngrediente();
                 t.setId(rs.getInt("id"));
                 t.setIdRefeicao(rs.getInt("id_refeicao"));

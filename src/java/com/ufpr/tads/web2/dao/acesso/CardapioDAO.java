@@ -26,8 +26,6 @@ public class CardapioDAO {
 
     private static final String QUERY_BUSCAR_CARDAPIO = "SELECT id, data from cardapio where id = ?;";
 
-    private static final String QUERY_BUSCAR_INGREDIENTES = "SELECT id, id_refeicao, id_ingrediente, quantidade, nome from refeicao_ingrediente, ingrediente\n"
-            + "where ingrediente.id = id_ingrediente and id_refeicao = ?;";
 
     private static final String QUERY_BUSCAR_TODOS = "select *, cast(date_part('day',data) as integer) as diaMes from cardapio;";
 
@@ -94,8 +92,9 @@ public class CardapioDAO {
                 t.setData(rs.getDate("data"));
 
                 List<Refeicao> refeicoes = RefeicaoFacade.buscar(cardapio_id);
+                System.out.println(refeicoes);
                 refeicoes.forEach((Refeicao ref) -> {
-                    System.out.println(ref.getId());
+                    System.out.println("refeicao: " + ref.getId());
                     List<RefeicaoIngrediente> listaRefeicaoIngrediente = null;
                     try {
                         listaRefeicaoIngrediente = RefeicaoIngredienteFacade.buscar(ref.getId());
